@@ -1,0 +1,130 @@
+.body
+{
+}
+.header
+{
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 5%;
+    padding-top: 1%;
+    color:#2E2E2E;
+}
+.header__top
+{
+}
+.top__title
+{
+    display: inline;
+    font-family: 'Lora';
+    font-size: 26px;
+    letter-spacing: 1px;
+    line-height: 26px;
+}
+.top__navigation
+{
+    display: inline;
+    font-size: 12px;
+    line-height: 26px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    word-spacing: 20px;
+}    
+.navigaton__link
+{
+    font-family: 'Oxygen';
+    text-decoration: none;
+    color:#2E2E2E;
+}
+.centre__title
+{
+    font-family: 'Lora';
+    font-size: 50px;
+    line-height: 51px;
+}
+.centre__text
+{
+    font-family: 'Oxygen';
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    color: rgba(46, 46, 46, 0.63)
+}
+.centre__image
+{
+    max-width: 1440px;
+    width: 100%;
+    max-height: 540px;
+}
+.body__main
+{
+    display: block;
+    width: 960px;
+    height: 1431px;
+    left: 240px;
+    top: 140px;
+}
+.main__text-one
+{
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px;
+}
+.main__text-two
+{
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px;    
+}
+.main__text-three
+{
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px;    
+}
+.main__text-four
+{
+    font-family: 'Oxygen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px;    
+}
+.footer
+{
+}
+.footer__bottom
+{
+    background-position: center;
+    background: rgba(25, 39, 49, 0.6);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+}
+.bottom__title
+{
+    display: inline;
+    font-family: 'Lora';
+    font-size: 26px;
+    line-height: 26px;
+    color:  #FFFFFF;
+    padding-left: 13%;
+}
+.bottom__menu
+{
+    display: inline;
+    padding-left: 55%;
+    
+}
+.menu__link
+{
+    font-family: 'Oxygen';
+    text-decoration: none;
+    color:white;
+}

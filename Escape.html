@@ -1,118 +1,128 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
   <meta  charset="UTF-8">
   <title>escape</title>
+  <link rel="stylesheet" href="style/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen:wght@300;400&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <div>  
-            <span>Escape.</spanv>   
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Categories</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-            </nav>
-        </div>  
-        <div>            
-            <img src="png/Header.png" alt= "Header" width ="1440px" height = "500px";/>
-            <h1 >Let's do it together</h1> 
-            <p>We travel the world in search of stories. Come along  for the ride</p>
-            <button>View Latest Posts</button> 
-        </div>    
-    </header>
-
-    <section>
-        <div>
-            <nav>
-                <a href="#">Nature</a>
-                <a href="#">Mountain</a>
-                <a href="#">Rivers</a>
-                <a href="#">Animals</a>
+<body class = "body">
+    <header class = "body__header header">
+        <div class = "header__top top">  
+            <span class = "top__title">Escape.</span> 
+            <nav class = "top__navigation navigaton">  
+                <a class ="navigaton__link" href="#">Home</a>
+                <a class ="navigaton__link" href="#">Categories</a>
+                <a class ="navigaton__link" href="#">About</a>
+                <a class ="navigaton__link" href="#">Contact</a>
             </nav>
         </div>
-        
-        <div>
-            <h2 >Featured post</h2> 
-            <div>         
-                <img src="png/The Road Ahead.png" alt= "The Road Ahead" width="400px" height="240px"/>
-                <a href ="The Road Ahead.html">The Road Ahead</a>
-                <p>The road ahead might be praved- it might not be </p>
-                <img src="png/Mat.jpg" alt= "Mat" width="20px" height="20px"/>    
-                <p>Mat Veogels September 25,2015</p>
-            </div>
-            
-            <div>
-                <img src="png/From Top Down.png" alt= "From Top Down" width="400px" height="240px"/>
-                <p>From Top Down</p>
-                <p>Once a year, go someplace you’ve never been before.</p>
-                <img src="png/William.jpg" alt= "William" width="20px" height="20px"/>
-                <p>William Wong September 21,2015</p>
+
+        <div class ="header__centre centre">            
+            <h1 class="centre__title">Let's do it together</h1> 
+            <p class="centre__text">We travel the world in search of stories. Come along  for the ride</p>
+            <input type="submit" value="View Latests Posts" class="centre__button"/>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="section__navigation navigaton">
+            <nav class = "navigation__menu menu">
+                <a class="menu__link" href="#">Nature</a>
+                <a class="menu__link" href="#">Photography</a>
+                <a class="menu__link" href="#">Relaxation</a>
+                <a class="menu__link" href="#">Vacation</a>
+                <a class="menu__link" href="#">Travel</a>
+                <a class="menu__link" href="#">Adventure</a>
+            </nav>
+        </div> 
+
+        <div class="section__last-posts last-posts">
+            <h2 class="last-posts__title">Featured post</h2> 
+            <div class="last-posts__left-block left-block">         
+                <a class="left-block__title" href ="The Road Ahead.html">The Road Ahead</a>
+                <p class="left-block__text">The road ahead might be praved- it might not be </p>
+                <img class="left-block__image" src="style/image/Mat.jpg" alt= "Mat" width="20" height="20">    
+                <span class="left-block__image-text">Mat Veogels</span>
+                <span class="left-block__image-data">September 25,2015</span>
+            </div>   
+    
+            <div class="last-posts__right-block right-block">
+                <span class="right-block__title">From Top Down</span>
+                <p class="right-block__text">Once a year, go someplace you’ve never been before.</p>
+                <img  class="right-block__image" src="style/image/William.jpg" alt= "William" width="20" height="20">
+                <span class="right-block__image-text">William Wong </span>
+                <span class="right-block__image-data">September 25,2015</span>
             </div>
         </div>    
-        <div>
-            <h3>Most Recent</h3>
-            <div>
-                <img src="png/Still Standing Tall.jpg" alt= "Still Standing Tall" width="400px" height="240px"/>
-                <p>Still Standing Tall</p>
-                <p>Life begins at the end of your comfort zone.</p>
-                <img src="png/William.jpg" alt= "William" width="20px" height="20px"/>
-                <p>William Wong September 21,2015</p>
+        <div class="section__all-posts all-posts">
+            <h3 class="all-posts__title">Most Recent</h3>
+            <div class="all-posts__first-post all-posts">
+                <img src="style/image/StillStandingTall.jpg" alt="StillStandingTall" width="400px" height="200px">
+                <span class="all-posts__title">Still Standing Tall</span>
+                <p class="all-posts__text">Life begins at the end of your comfort zone.</p>
+                <img class="all-posts__image" src="style/image/William.jpg" alt= "William" width="20" height="20">
+                <span class="all-posts__image-text">William Wong </span>
+                <span class="all-posts__image-data">September 25,2015</span>
             </div>    
 
-            <div>
-                <img src="png/Sunny Side Up.png" alt= "Sunny Side Up" width="400px" height="240px"/>
-                <p>Sunny Side Up</p>
-                <p>No place is ever as bad as they tell you it’s going to be.</p>
-                <img src="png/Mat.jpg" alt= "Mat" width="20px" height="20px"/>
-                <p>Mat Vogels 21,2015</p>
+            <div class="all-posts__second-post all-posts">
+                <img src="style/image/SunnySideUp.jpg" alt="Sunny Side Up" width="400px" height="200px">
+                <span class="all-posts__title">Sunny Side Up</span>
+                <p class="all-posts__text">No place is ever as bad as they tell you it’s going to be.</p>
+                <img class="all-posts__image" src="style/image/Mat.jpg" alt= "Mat" width="20" height="20">
+                <span class="all-posts__image-text">Mat Vogels </span>
+                <span class="all-posts__image-data">September 25,2015</span>
             </div>
 
-            <div>
-                <img src="png/Water Falls.png" alt= "Water Falls" width="400px" height="240px"/>
-                <p>Water Falls</p>
-                <p>We travel not to escape life, but for life not to escape us.</p>
-                <img src="png/Mat.jpg" alt= "Mat" width="20px" height="20px"/>
-                <p>Mat Vogels 21,2015</p>
+            <div class="all-posts__third-post all-posts">
+                <img src="style/image/WaterFalls.jpg" alt="Water Falls" width="400px" height="200px">
+                <span class="all-posts__title">Water Falls</span>
+                <p class="all-posts__text">We travel not to escape life, but for life not to escape us.</p>
+                <img class="all-posts__image" src="style/image/Mat.jpg" alt= "Mat" width="20" height="20">
+                <span class="all-posts__image-text">Mat Vogels </span>
+                <span class="all-posts__image-data">September 25,2015</span>
             </div>   
               
-            <div>
-                <img src="png/Through the Mist.png" alt= "Through the Mist" width="400px" height="240px"/>
-                <p>Through the Mist</p>
-                <p>Travel makes you see what a tiny place you occupy in the world.</p>
-                <img src="png/William.jpg" alt= "William" width="20px" height="20px"/>
-                <p>William Wong September 21,2015</p>
+            <div class="all-posts__fourth-post all-posts">
+                <img src="style/image/ThroughtheMist.jpg" alt="Through the Mist" width="400px" height="200px">
+                <span class="all-posts__title">Through the Mist</span>
+                <p class="all-posts__text">Travel makes you see what a tiny place you occupy in the world.</p>
+                <img class="all-posts__image" src="style/image/William.jpg" alt= "William" width="20" height="20">
+                <span class="all-posts__image-text">William Wong </span>
+                <span class="all-posts__image-data">September 25,2015</span>
             </div>
 
-            <div>
-                <img src="png/Awaken Early.png" alt= "Awaken Early" width="400px" height="240px"/>
-                <p>Awaken Early</p>
-                <p>Not all those who wander are lost.</p>
-                <img src="png/Mat.jpg" alt= "Mat" width="20px" height="20px"/>
-                <p>Mat Vogels 21,2015</p>
+            <div class="all-posts__fifth-post all-posts">
+                <img src="style/image/AwakenEarly.jpg" alt="Awaken Early" width="400px" height="200px">
+                <span class="all-posts__title">Awaken Early</span>
+                <p class="all-posts__text">Not all those who wander are lost.</p>
+                <img class="all-posts__image" src="style/image/Mat.jpg" alt= "Mat" width="20" height="20">
+                <span class="all-posts__image-text">Mat Vogels </span>
+                <span class="all-posts__image-data">September 25,2015</span>
             </div>    
           
-            <div>
-                <img src="png/Try it Always.png" alt= "ry it Always" width="400px" height="240px"/>
-                <p>Try it Always</p>
-                <p>The world is a book, and those who do not travel read only one page.</p>
-                <img src="png/Mat.jpg" alt= "Mat" width="20px" height="20px"/>
-                <p>Mat Vogels 21,2015</p>
+            <div class="all-posts__sixth-post all-posts">
+                <img src="style/image/TryItAlways.jpg" alt="Try it Always" width="400px" height="200px">
+                <span class="all-posts__title">Try it Always</span>
+                <p class="all-posts__text">The world is a book, and those who do not travel read only one page.</p>
+                <img class="all-posts__image" src="style/image/Mat.jpg" alt= "Mat" width="20" height="20">
+                <span class="all-posts__image-text">Mat Vogels </span>
+                <span class="all-posts__image-data">September 25,2015</span>
             </div>
         </div>    
     </section>
     
-    <footer>
-        <div>
-            <span>Escape.</spanv>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Categories</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+    <footer class="footer">
+        <div class="footer__bottom bottom">
+            <span class="bottom__title">Escape.</span>
+            <nav class="bottom__menu">
+                <a class="menu__link" href="#">Home</a>
+                <a class="menu__link" href="#">Categories</a>
+                <a class="menu__link" href="#">About</a>
+                <a class="menu__link" href="#">Contact</a>
             </nav>
-            <img src="png/Footer.png" alt= "Footer" width="1440px" height="89px"/> 
         </div>   
     </footer>
 </body>
