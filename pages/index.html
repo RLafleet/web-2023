@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta  charset="UTF-8">
+  <title>escape</title>
+  <link rel="stylesheet" type="text/css" href="static/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+<body class = "body">
+  <header class="header">
+    <div class="header__top top">  
+      <span class="top__title">Escape.</span> 
+      <nav class="top__navigation navigaton">  
+        <a class="navigaton__link" href="#">Home</a>
+        <a class="navigaton__link" href="#">Categories</a>
+        <a class="navigaton__link" href="#">About</a>
+        <a class="navigaton__link" href="#">Contact</a>
+      </nav>
+    </div>
+
+    <div class="header__caption caption"> 
+      <h1 class="caption__title">Let's do it together.</h1> 
+      <p class="caption__text">We travel the world in search of stories. Come along  for the ride</p>
+      <input type="submit" value="View Latests Posts" class="caption__button"/>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section__navigation navigaton">
+      <nav class="navigation__menu men3u">
+        <a class="menu__link" href="#">Nature</a>
+        <a class="menu__link" href="#">Photography</a>
+        <a class="menu__link" href="#">Relaxation</a>
+        <a class="menu__link" href="#">Vacation</a>
+        <a class="menu__link" href="#">Travel</a>
+        <a class="menu__link" href="#">Adventure</a>
+      </nav>
+    </div> 
+    <h2 class="section__title-featured-posts">Featured Posts</h2>
+    <div class="section__line"></div>
+    <div class="section__featured-posts featured-posts">
+      {{ range .FeaturedPosts }}  
+      <div class="{{.ImgModifier}}">
+        <a class="featured-posts__title" href ="post">{{.Title}}</a>
+        <p class="featured-posts__text">{{.Subtitle}}</p>
+        <img class="featured-posts__image" src = "{{.AuthorImg}}" alt= "Mat">    
+        <span class="featured-posts__image-text">{{.Author}}</span>
+        <span class="featured-posts__image-data">{{.PublishDate}}</span>
+      </div>
+      {{ end}}  
+    </div>
+    <h3 class="section__title-top">Most Recent</h3>
+    <div class="section__line-top"></div>
+    <div class="section__all-posts all-posts">
+      {{ range .MostRecent}}
+      <div class="all-posts__item all-posts">
+        <img src="{{.ImgModifier}}" alt="StillStandingTall" >
+        <span class="all-posts__title">{{.Title}}</span>
+        <p class="all-posts__text">{{.Subtitle}}</p>
+        <div class="item__author-block author-block">
+          <div class="author-block__line"></div>
+          <div class="author-block__author-info">
+            <img class="author-block__image" src="{{.AuthorImg}}" alt= "William">
+            <span class="author-block__image-text">{{.Author}}</span>
+            <span class="author-block__image-data">{{.PublishDate}}</span>
+          </div>
+        </div>
+      </div>
+    {{ end}}      
+    </div>    
+  </section>   
+  <footer class="footer">
+    <h2 class="footer__title">Stay in Touch</h2>
+    <hr class="footer__line"/>
+    <div class="footer__search search">
+      <input type="text" placeholder="Enter your email adress" class="search__text"/>     
+      <input type="submit" value="Submit" class="search__button"/>
+    </div>
+    <div class="footer__content content">
+      <span class="content__title">Escape.</span>
+        <nav class="content__menu-footer menu-footer">
+          <a class="menu-footer__link" href="#">Home</a>
+          <a class="menu-footer__link" href="#">Categories</a>
+          <a class="menu-footer__link" href="#">About</a>
+          <a class="menu-footer__link" href="#">Contact</a>
+        </nav>
+    </div>   
+  </footer>
+</body>
+</html>
+
+
+
+
+
+
+
