@@ -92,17 +92,14 @@
 {
     display: flex;
     justify-content: center;
-    padding: 80px 0 0 5px;
     font: 25px "Oxygen", normal;
     color: #EFEFEF;
     line-height: 30px;
-}
-
-.footer__line   
-{
-    display: flex;
-    justify-content: center;
-    margin:  0 43.3% 0 43.3%;
+    border-bottom: 0.5px solid #d3cccc;
+    padding: 40px 0 15px 0;
+    max-width: 180px;
+    margin: 0 auto 10px;
+    
 }
 
 .footer__search
@@ -121,7 +118,7 @@
     border-radius: 0px 2px 2px 0px;
     border: 0;
     color: white;
-    padding: 15px 45px 15px 45px;
+    padding: 15px 45px;
     
 }
 
@@ -130,10 +127,11 @@
     font: 12px "Roboto";
     line-height: 14px;
     text-align: left;
-    padding: 15px 210px 15px 30px;
+    width: 400px;
+    padding: 15px;
     border: 10px;
     border-radius: 3px 0px 0px 3px;
-    margin: 0 0 0 0;
+    margin: 0;
     background-color: white;
 }
 

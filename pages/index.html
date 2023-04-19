@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
 </head>
-<body class = "body">
+<body class="body">
   <header class="header">
     <div class="header__top top">  
       <span class="top__title">Escape.</span> 
@@ -29,7 +29,7 @@
 
   <section class="section">
     <div class="section__navigation navigaton">
-      <nav class="navigation__menu men3u">
+      <nav class="navigation__menu menu">
         <a class="menu__link" href="#">Nature</a>
         <a class="menu__link" href="#">Photography</a>
         <a class="menu__link" href="#">Relaxation</a>
@@ -39,41 +39,37 @@
       </nav>
     </div> 
     <h2 class="section__title-featured-posts">Featured Posts</h2>
-    <div class="section__line"></div>
     <div class="section__featured-posts featured-posts">
       {{ range .FeaturedPosts }}  
       <div class="{{.ImgModifier}}">
-        <a class="featured-posts__title" href ="post">{{.Title}}</a>
+        <a class="featured-posts__{{.Title}}" href ="/post/{postID}">{{.Title}}</a>
         <p class="featured-posts__text">{{.Subtitle}}</p>
-        <img class="featured-posts__image" src = "{{.AuthorImg}}" alt= "Mat">    
-        <span class="featured-posts__image-text">{{.Author}}</span>
-        <span class="featured-posts__image-data">{{.PublishDate}}</span>
+        <div class="featured-posts__author-block">
+          <img class="featured-posts__image" src = "{{.AuthorImg}}" alt= "Mat">    
+          <span class="featured-posts__image-text">{{.Author}}</span>
+          <span class="featured-posts__image-data">{{.PublishDate}}</span>
+        </div>
       </div>
       {{ end}}  
     </div>
     <h3 class="section__title-top">Most Recent</h3>
-    <div class="section__line-top"></div>
     <div class="section__all-posts all-posts">
       {{ range .MostRecent}}
-      <div class="all-posts__item all-posts">
+      <div class="all-posts__item">
         <img src="{{.ImgModifier}}" alt="StillStandingTall" >
-        <span class="all-posts__title">{{.Title}}</span>
+        <a class="all-posts__{{.Title}}" href ="/post/{postID}">{{.Title}}</a>
         <p class="all-posts__text">{{.Subtitle}}</p>
-        <div class="item__author-block author-block">
-          <div class="author-block__line"></div>
-          <div class="author-block__author-info">
+          <div class="item__author-block">
             <img class="author-block__image" src="{{.AuthorImg}}" alt= "William">
             <span class="author-block__image-text">{{.Author}}</span>
             <span class="author-block__image-data">{{.PublishDate}}</span>
           </div>
-        </div>
       </div>
     {{ end}}      
     </div>    
   </section>   
   <footer class="footer">
     <h2 class="footer__title">Stay in Touch</h2>
-    <hr class="footer__line"/>
     <div class="footer__search search">
       <input type="text" placeholder="Enter your email adress" class="search__text"/>     
       <input type="submit" value="Submit" class="search__button"/>
