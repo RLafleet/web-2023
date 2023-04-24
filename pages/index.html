@@ -3,7 +3,7 @@
 <head>
   <meta  charset="UTF-8">
   <title>escape</title>
-  <link rel="stylesheet" type="text/css" href="static/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
@@ -41,8 +41,8 @@
     <h2 class="section__title-featured-posts">Featured Posts</h2>
     <div class="section__featured-posts featured-posts">
       {{ range .FeaturedPosts }}  
-      <div class="{{.ImgModifier}}">
-        <a class="featured-posts__{{.Title}}" href ="/post/{postID}">{{.Title}}</a>
+      <div class="featured-post__background__{{.ImgModifier}}">
+        <a class="featured-posts__title" href ="/post/{{ .PostID }}">{{.Title}}</a>
         <p class="featured-posts__text">{{.Subtitle}}</p>
         <div class="featured-posts__author-block">
           <img class="featured-posts__image" src = "{{.AuthorImg}}" alt= "Mat">    
@@ -56,8 +56,8 @@
     <div class="section__all-posts all-posts">
       {{ range .MostRecent}}
       <div class="all-posts__item">
-        <img src="{{.ImgModifier}}" alt="StillStandingTall" >
-        <a class="all-posts__{{.Title}}" href ="/post/{postID}">{{.Title}}</a>
+        <img src="static/image/{{.ImgModifier}}.jpg">
+        <a class="all-posts__title" href ="/post/{{ .PostID }}">{{.Title}}</a>
         <p class="all-posts__text">{{.Subtitle}}</p>
           <div class="item__author-block">
             <img class="author-block__image" src="{{.AuthorImg}}" alt= "William">

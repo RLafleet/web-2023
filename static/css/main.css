@@ -127,7 +127,7 @@
     justify-content: center;
 }
 
-.featured-post__background_the-road-ahead
+.featured-post__background__first-image
 {
     background-image: url(../image/first-image.jpg);
     background-repeat: no-repeat;
@@ -136,7 +136,7 @@
     width: 460px;
 }
 
-.featured-post__background_from-top-down
+.featured-post__background__second-image
 {
     background-image: url(../image/second-image.jpg);
     background-repeat: no-repeat;

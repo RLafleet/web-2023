@@ -57,12 +57,9 @@
 
 .caption__image
 {
-    background-image: url(../image/first-image.jpg);
-    padding: 500px 50% 0 50% ;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: rgb(31, 31, 0);
-    color:white;
+    width: 100%;
+    max-width: 1300px;
+    max-height: 534px;
 }
 
 .section__main
