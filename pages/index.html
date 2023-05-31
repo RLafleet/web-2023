@@ -41,13 +41,13 @@
     <h2 class="section__title-featured-posts">Featured Posts</h2>
     <div class="section__featured-posts featured-posts">
       {{ range .FeaturedPosts }}  
-      <div class="featured-post__background__{{.ImgModifier}}">
-        <a class="featured-posts__title" href ="/post/{{ .PostID }}">{{.Title}}</a>
-        <p class="featured-posts__text">{{.Subtitle}}</p>
+      <div class="featured-post__background" style="background-image: url('{{ .Image }}');">
+        <a class="featured-posts__title" href="{{ .PostURL }}">{{ .Title }}</a>
+        <p class="featured-posts__text">{{ .Subtitle }}</p>
         <div class="featured-posts__author-block">
-          <img class="featured-posts__image" src = "{{.AuthorImg}}" alt= "Mat">    
-          <span class="featured-posts__image-text">{{.Author}}</span>
-          <span class="featured-posts__image-data">{{.PublishDate}}</span>
+          <img class="featured-posts__image" src = "{{ .AuthorImg }}" alt= "Mat">    
+          <span class="featured-posts__image-text">{{ .Author }}</span>
+          <span class="featured-posts__image-data">{{ .PublishDate }}</span>
         </div>
       </div>
       {{ end}}  
@@ -56,13 +56,13 @@
     <div class="section__all-posts all-posts">
       {{ range .MostRecent}}
       <div class="all-posts__item">
-        <img src="static/image/{{.ImgModifier}}.jpg">
-        <a class="all-posts__title" href ="/post/{{ .PostID }}">{{.Title}}</a>
-        <p class="all-posts__text">{{.Subtitle}}</p>
+        <img src="{{.Image}}">
+        <a class="all-posts__title" href="{{ .PostURL }}">{{ .Title }}</a>
+        <p class="all-posts__text">{{ .Subtitle }}</p>
           <div class="item__author-block">
-            <img class="author-block__image" src="{{.AuthorImg}}" alt= "William">
-            <span class="author-block__image-text">{{.Author}}</span>
-            <span class="author-block__image-data">{{.PublishDate}}</span>
+            <img class="author-block__image" src="{{ .AuthorImg }}" alt= "William">
+            <span class="author-block__image-text">{{ .Author }}</span>
+            <span class="author-block__image-data">{{ .PublishDate }}</span>
           </div>
       </div>
     {{ end}}      

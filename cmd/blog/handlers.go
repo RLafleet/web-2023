@@ -21,7 +21,7 @@ type featuredPostData struct {
 	PostURL     string
 	Title       string `db:"title"`
 	Subtitle    string `db:"subtitle"`
-	ImgModifier string `db:"imgModifier"`
+	Image       string `db:"image"`
 	Author      string `db:"author"`
 	AuthorImg   string `db:"authorImg"`
 	PublishDate string `db:"publish_date"`
@@ -32,17 +32,17 @@ type mostRecentData struct {
 	PostURL     string
 	Title       string `db:"title"`
 	Subtitle    string `db:"subtitle"`
-	ImgModifier string `db:"imgModifier"`
+	Image       string `db:"image"`
 	Author      string `db:"author"`
 	AuthorImg   string `db:"authorImg"`
 	PublishDate string `db:"publish_date"`
 }
 
 type postData struct {
-	Title       string `db:"title"`
-	Subtitle    string `db:"subtitle"`
-	ImgModifier string `db:"imgModifier"`
-	Content     string `db:"content"`
+	Title    string `db:"title"`
+	Subtitle string `db:"subtitle"`
+	Image    string `db:"image"`
+	Content  string `db:"content"`
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -70,6 +70,48 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			FeaturedPosts: featuredPosts,
 			MostRecent:    mostResentPosts,
 		}
+
+		err = ts.Execute(w, data)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+		log.Println("Request completed successfully")
+	}
+}
+
+func login(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		ts, err := template.ParseFiles("pages/login.html")
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		data := indexPage{}
+
+		err = ts.Execute(w, data)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+		log.Println("Request completed successfully")
+	}
+}
+
+func admin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		ts, err := template.ParseFiles("pages/admin.html")
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		data := indexPage{}
 
 		err = ts.Execute(w, data)
 		if err != nil {
@@ -130,8 +172,8 @@ func featuredPosts(db *sqlx.DB) ([]*featuredPostData, error) {
 		SELECT
 		    post_id,
 			title,       
-			subtitle,  
-			imgModifier,
+			subtitle, 
+			image,
 			author,      
 			authorImg,  
 			publish_date 
@@ -157,8 +199,8 @@ func mostRecent(db *sqlx.DB) ([]*mostRecentData, error) {
 		SELECT
 		    post_id,
 			title,       
-			subtitle,   
-			imgModifier,
+			subtitle, 
+			image,  
 			author,      
 			authorImg,  
 			publish_date 
@@ -184,11 +226,11 @@ func postByID(db *sqlx.DB, postID int) (postData, error) {
 		SELECT
 			title,
 			subtitle,
-			imgModifier,
+			image,
 			content
 		FROM
-			` + "`post`" +
-		`WHERE
+		   post
+		WHERE
 			post_id = ?
 	`
 	// В SQL-запросе добавились параметры, как в шаблоне. ? означает параметр, который мы передаем в запрос ниже

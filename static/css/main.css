@@ -127,20 +127,10 @@
     justify-content: center;
 }
 
-.featured-post__background__first-image
+.featured-post__background
 {
-    background-image: url(../image/first-image.jpg);
     background-repeat: no-repeat;
-    margin: 0 20px 30px 10px;
-    padding: 40px 0 40px 0;
-    width: 460px;
-}
-
-.featured-post__background__second-image
-{
-    background-image: url(../image/second-image.jpg);
-    background-repeat: no-repeat;
-    margin: 0 20px 30px 0;
+    margin: 0 20px 30px 10px;   
     padding: 40px 0 40px 0;
     width: 460px;
 }

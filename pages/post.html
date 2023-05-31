@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta  charset="UTF-8">
-  <title>The Road Ahead.html</title>
+  <title>{{ .Title }}.html</title>
   <link rel="stylesheet" href="/static/css/post.css">
   <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
     <div class="header__caption caption">
       <h1 class="caption__title" >{{ .Title }}</h1>
       <p class="caption__text">{{ .Subtitle }}</p>
-      <img class="caption__image" src="/static/image/{{ .ImgModifier }}.jpg">
+      <img class="caption__image" src="{{ .Image }}">
     </div>      
   </header>
   <div class="section__main main">
