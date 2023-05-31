@@ -269,3 +269,102 @@ body.onsubmit = e => {
   console.log(json);
 } 
 */
+/*
+const form = document.querySelector("body");
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  const formData = new FormData(form);
+  const data = {};
+  for (const [key, value] of formData.entries()) {
+    data[key] = value;
+  }
+
+  try {
+    const response = await fetch("/admin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error("Ошибка сети, повторите запрос");
+    }
+
+    const responseData = await response.json();
+    console.log(responseData);
+  } catch (error) {
+    console.error(error);
+  }
+});
+*/
+/*
+const btn = document.querySelector('#submit');
+const input = document.querySelector('#content__text');
+const url = 'http://localhost:3000/admin';
+
+btn.addEventListener('click', get(url, input));
+
+async function get(url, input) {
+    const data = {
+      inputValue: input.value
+    };
+    
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+  
+    try {
+      const response = await fetch(url, options);
+  
+      if (response.ok) {
+        const jsonData = await response.json();
+        console.log(jsonData);
+      } else {
+        console.error('Server error');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+}
+*/
+const get=document.querySelector("#publish");
+get.addEventListener("click", createPost());
+          async function createPost() {
+            const titleinput = document.querySelector("#content__title");
+            const subtitleinput = document.querySelector("#content__subtitle");
+            const imageinput = document.querySelector("#previewLoad_main");
+            const authorinput = document.querySelector("#content__author");
+            const authorimginput = document.querySelector("#previewLoad_author");
+            const publishDateinput = document.querySelector("#contentDate");
+            const response = await fetch('order',{
+              method: 'POST',
+              body: JSON.stringify({
+                title: titleinput.value,
+                subtitle: subtitleinput.value,
+                image: b64EncodeUnicode(imageinput.value),
+                author: authorinput.value,
+                authorimg: b64EncodeUnicode(authorimginput.value),
+                publishDate: publishDateinput.value,
+                
+
+              })
+            });
+            console.log(response.ok);
+          }
+
+          function b64EncodeUnicode(str) {
+            // first we use encodeURIComponent to get percent-encoded UTF-8,
+            // then we convert the percent encodings into raw bytes which
+            // can be fed into btoa.
+            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+                function toSolidBytes(match, p1) {
+                    return String.fromCharCode('0x' + p1);
+            }));
+        }

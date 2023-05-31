@@ -1,14 +1,207 @@
-<form>
-  <div class="col_half">
-    <input type="text" name="ScheduledVisit" placeholder="Scheduled Visit" class="sm-form-control border-form-control datetimepicker" id="ScheduledVisit" />
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta  charset="UTF-8">
+  <title>Log In</title>
+  <link rel="stylesheet" type="text/css" href="/static/css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <script src="static/js/script.js" defer></script>
+</head>
+<body class="body">
+  <header class="body__header header">
+    <div class="header__top top">
+      <div class="top__main main">
+        <p class="main__title">Escape</p>
+        <p class="main__text">.author</p>
+      </div>
+      <div class="top__logo logo">
+        <p class="logo__text">N</p>
+      </div>  
+      <div class="top__logOut"></div>
+    </div>
+  </header>
+  <section class="body__section section">
+    <div class="section__menu menu">
+      <div class="menu__information">
+        <p class = "information__title">New Post</p>  
+        <p class = "information__text">Fill out the form bellow and publish your article</p>  
+      </div>
+      <button onclick="createPost()" id="publish"  class="menu__button">Publish</button>
+    </div>
+    <div class="section__form form">
+      <div class="form__content content">
+        <p class="content__main_title">Main Information</p>
 
-  <div class="col_half col_last">
-    <input type="text" name="company" class="sm-form-control border-form-control" placeholder="company" id="company" />
-  </div>
 
-  <div class="col_two_third">
-    <input type="text" name="contactPerson" placeholder="Contact Person" class="sm-form-control border-form-control" id="contact" />
-  </div>
-  <input type="submit">
-</form>
+        <div class="content__article article">
+          
+          <div class="article__content content">
+            <p class="content__text">Title</p>
+            <input id="content__title" type="text" class="content__reg" />
+            <p  class="content__text">Short description</p>
+            <input id="content__subtitle" type="text" class="content__reg" />
+            <p  class="content__text">Author name</p>
+            <input id="content__author" type="text" class="content__reg" />
+            <p class="content__text">Author photo</p>
+
+            <div class="content__preview_author preview_author">
+           
+              <div class="preview_author__photo_author photo_author">
+                <div class="photo_author__author">
+                  <div class="upload__img"></div>
+                </div>
+                <input id="previewLoad_author" class="preview__load" type="file"/>
+                <img src="" id="previewImg_author" class="preview__image_aut"/>
+              </div>
+              <label id="previewUpLoad_author" class="preview__upload upload" for="previewLoad_author">
+                <span class="upload__text">Upload</span>
+              </label>
+
+              <div id="content__optionsAuthor" class="content__options options">
+              
+                <div class="upload__img"></div>
+                <label id="previewNewload_author" class="preview__upload upload" for="previewLoad_author">
+                  <span class="options__upload">Upload New</span>
+                </label>
+                <div class="delete__img"></div>
+                <label id="previewDel_aut" class="preview__upload upload">
+                  <span class="options__delete">Remove</span>
+                </label>
+              </div>
+            </div>
+          
+          </div>
+          <div class="article__article_preview article_preview">
+            <p class="article_preview__article_title">Article Preview</p>
+            <div class="article_preview__article_structure article_structure">
+              <div class="article_structure__article_reshade">
+                <div class="article_reshade__article_main article_main">
+                  <div class="article_main__article_pattern">
+                    <div class="article_pattern__article_dot article_dot">
+                      <div class="article_dot__article_point"></div>
+                      <div class="article_dot__article_point"></div>
+                      <div class="article_dot__article_point"></div>
+                    </div>
+                    <div class="article_pattern__article_line"></div>
+                    <p id="preview__title" class="article_pattern__article_title">Enter article title</p>
+                    <p id="preview__subtitle" class="article_pattern__article_text">Enter Short description</p>
+                    <div class="article_pattern__article_block article_block">
+                      <div class="article_block__main"></div>
+                      <img src="" id="patternImg_main" class="preview__image"/>
+                    </div>  
+                  </div>
+                </div>
+                <div class="article_structure__shade_bottom"></div>
+              </div>
+              <div class="article_structure__shade_top"></div>
+            </div>
+          </div>
+        
+        </div>
+
+        <div class="content__post content">
+
+          <div class="post__wrapper">
+            <p class="content__text">Publish Date</p>
+            <input id="contentDate" type="date" class="content__reg"/>
+            <p class="content__text">Hero image</p>
+            
+            <div class="content__preview_main preview">
+              <input id="previewLoad_main" class="preview__load" type="file" />
+              <label id="previewUpload_main" class="preview__upload upload" for="previewLoad_main">
+                <div class="upload__img"></div>
+                <span class="upload__text">Upload</span>
+              </label>
+              <img src="" id="previewImg_main" class="preview__image"/>
+            </div>
+            <div id="content__optionsMain" class="content__options options">
+              
+              <div class="upload__img"></div>
+              <input id="previewLoad_main" class="preview__load" type="file" />
+              <label id="previewUpload_main" class="preview__upload upload" for="previewLoad_main">
+                <span class="options__upload">Upload New</span>
+              </label>
+              <div class="delete__img"></div>
+              <label id="previewDel_main" class="preview__upload upload">
+                <span class="options__delete">Remove</span>
+              </label>
+            </div>
+            
+            <p id="content__size" class="content__info">Size up to 10mb. Format: png, jpeg, gif.</p>
+            
+            <p class="content__text">Hero image</p>
+
+            <div class="content__preview_mini preview"> 
+              <input id="previewLoad_mini" class="preview__load" type="file" />  
+              <label id="previewUpload_mini" class="preview__upload upload" for="previewLoad_mini"> 
+                <div class="upload__img"></div>
+                <span class="upload__text">Upload</span>
+              </label>
+              <img src="" id="previewImg_mini" class="preview__image"/> 
+            </div>
+            <div id="content__optionsMini" class="content__options options">
+              <div class="upload__img"></div>
+              <label id="previewUpload_mini" class="preview__upload upload" for="previewLoad_mini"> 
+                <span class="options__upload">Upload New</span>
+              </label>
+              <div class="delete__img"></div>
+              <label id="previewDel_mini" class="preview__upload upload">
+                <span class="options__delete">Remove</span>
+              </label>
+            </div>
+            <p class="content__info">Size up to 5mb. Format: png, jpeg, gif.</p>
+
+          </div>
+
+          <div class="post__post_preview post_preview">
+            <p class="post_preview__post_title">Post card preview</p>
+            <div class="post_preview__post_structure post_structure">
+              <div class="post_structure__post_reshade">
+                <div class="post_reshade__post_main post_main">
+                  <div class="post_main__post_pattern">
+                    <div class="post_pattern__post_block">
+                      <div class="post_block__mini"></div>
+                      <img src="" id="patternImg_mini" class="preview__image"/>
+                    </div> 
+                    <p id="pattern__title" class="post_pattern__post_title">Enter article title</p>
+                    <p id="pattern__subtitle" class="post_pattern__post_text">Enter Short description</p>
+                    <div class="post_pattern__post_author">
+                      <div class="post_author__avatar avatar">
+                        <div class="avatar__photo"></div>
+                        <img src="" id="patternImg_avatar" class="preview__image_aut"/>
+                      </div>
+                      <p class="post_author__author-name">Enter author name</p>
+                      <p class="post_author__date">17/03/2022</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="post_structure__shade_bottom"></div>
+              </div>
+              <div class="post_structure__shade_top"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer class="body__footer footer">
+      <div class="footer__bottom bottom">
+        <p class="bottom__title">Content</p>
+        <p class="bottom__text">Post content(plain text)</p>
+        <textarea type="text" placeholder="Type anything you want..." rows="7" class="bottom__info" ></textarea>
+      </div>
+      </div>
+    </footer>
+  </section>
+</body>
+</html>
+
+
+
+
+
+
+

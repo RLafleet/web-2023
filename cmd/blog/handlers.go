@@ -2,7 +2,9 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
 	"strconv"
@@ -43,6 +45,15 @@ type postData struct {
 	Subtitle string `db:"subtitle"`
 	Image    string `db:"image"`
 	Content  string `db:"content"`
+}
+
+type createPostRequest struct {
+	Title       string `json:"title"`
+	Subtitle    string `json:"subtitle"`
+	Image       string `json:"image"`
+	Author      string `json:"author"`
+	AuthorImg   string `json:"authorImg"`
+	PublishDate string `json:"publish_date"`
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -244,4 +255,30 @@ func postByID(db *sqlx.DB, postID int) (postData, error) {
 	}
 
 	return post, nil
+}
+
+func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err)
+			return
+		}
+
+		var req createPostRequest
+		err = json.Unmarshal(body, &req)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err)
+			return
+		}
+
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err)
+			return
+		}
+		log.Println("Request completed successfully")
+	}
 }
