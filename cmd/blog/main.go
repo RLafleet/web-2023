@@ -30,7 +30,7 @@ func main() {
 	mux.HandleFunc("/post/{postID}", post(dbx))
 
 	// new 31.05
-	mux.HandleFunc("/order", createPost(dbx)).Methods(http.MethodPost)
+	mux.HandleFunc("/api/post", createPost(dbx)).Methods(http.MethodPost)
 	//
 	mux.HandleFunc("/login", login(dbx))
 	mux.HandleFunc("/admin", admin(dbx))

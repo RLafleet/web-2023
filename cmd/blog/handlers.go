@@ -2,12 +2,16 @@ package main
 
 import (
 	"database/sql"
+	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
+	"strings"
 
 	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
@@ -48,27 +52,30 @@ type postData struct {
 }
 
 type createPostRequest struct {
-	Title       string `json:"title"`
-	Subtitle    string `json:"subtitle"`
-	Image       string `json:"image"`
-	Author      string `json:"author"`
-	AuthorImg   string `json:"authorImg"`
-	PublishDate string `json:"publish_date"`
+	Title         string `json:"title"`
+	Subtitle      string `json:"subtitle"`
+	Image         string `json:"image"`
+	ImageName     string `json:"imageName"`
+	Author        string `json:"author"`
+	AuthorImg     string `json:"authorImg"`
+	AuthorImgName string `json:"authorImgName"`
+	PublishDate   string `json:"publishDate"`
+	Content       string `json:"content"`
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		featuredPosts, err := featuredPosts(db)
 		if err != nil {
-			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+			http.Error(w, "Internal Server Error", 500)
 			log.Println(err)
-			return // Не забываем завершить выполнение ф-ии
+			return
 		}
 		mostResentPosts, err := mostRecent(db)
 		if err != nil {
-			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+			http.Error(w, "Internal Server Error", 500)
 			log.Println(err)
-			return // Не забываем завершить выполнение ф-ии
+			return
 		}
 		ts, err := template.ParseFiles("pages/index.html")
 		if err != nil {
@@ -136,9 +143,9 @@ func admin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 
 func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		postIDStr := mux.Vars(r)["postID"] // Получаем postID в виде строки из параметров урла
+		postIDStr := mux.Vars(r)["postID"]
 
-		postID, err := strconv.Atoi(postIDStr) // Конвертируем строку postID в число
+		postID, err := strconv.Atoi(postIDStr)
 		if err != nil {
 			http.Error(w, "Invalid post id", 404)
 			log.Println(err)
@@ -148,8 +155,6 @@ func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 		post, err := postByID(db, postID)
 		if err != nil {
 			if err == sql.ErrNoRows {
-				// sql.ErrNoRows возвращается, когда в запросе к базе не было ничего найдено
-				// В таком случае мы возвращем 404 (not found) и пишем в тело, что ордер не найден
 				http.Error(w, "post not found", 404)
 				log.Println(err)
 				return
@@ -191,15 +196,15 @@ func featuredPosts(db *sqlx.DB) ([]*featuredPostData, error) {
 		FROM 
 			post
 		WHERE featured = 1
-	` // Составляем SQL-запрос для получения записей для секции featured-posts
-	var posts []*featuredPostData // Заранее объявляем массив с результирующей информацией
+	`
+	var posts []*featuredPostData
 
-	err := db.Select(&posts, query) // Делаем запрос в базу данных
-	if err != nil {                 // Проверяем, что запрос в базу данных не завершился с ошибкой
+	err := db.Select(&posts, query)
+	if err != nil {
 		return nil, err
 	}
 	for _, post := range posts {
-		post.PostURL = "/post/" + post.PostID // Формируем исходя из ID ордера в базе
+		post.PostURL = "/post/" + post.PostID
 	}
 
 	return posts, nil
@@ -218,15 +223,15 @@ func mostRecent(db *sqlx.DB) ([]*mostRecentData, error) {
 		FROM
 			post
 		WHERE featured = 0
-	` // Составляем SQL-запрос для получения записей для секции featured-posts
-	var posts []*mostRecentData // Заранее объявляем массив с результирующей информацией
+	`
+	var posts []*mostRecentData
 
-	err := db.Select(&posts, query) // Делаем запрос в базу данных
-	if err != nil {                 // Проверяем, что запрос в базу данных не завершился с ошибкой
+	err := db.Select(&posts, query)
+	if err != nil {
 		return nil, err
 	}
 	for _, post := range posts {
-		post.PostURL = "/post/" + post.PostID // Формируем исходя из ID ордера в базе
+		post.PostURL = "/post/" + post.PostID
 	}
 
 	return posts, nil
@@ -244,11 +249,8 @@ func postByID(db *sqlx.DB, postID int) (postData, error) {
 		WHERE
 			post_id = ?
 	`
-	// В SQL-запросе добавились параметры, как в шаблоне. ? означает параметр, который мы передаем в запрос ниже
-
 	var post postData
 
-	// Обязательно нужно передать в параметрах postID
 	err := db.Get(&post, query, postID)
 	if err != nil {
 		return postData{}, err
@@ -273,12 +275,99 @@ func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 			return
 		}
-
+		authorImg, err := base64.StdEncoding.DecodeString(req.AuthorImg)
 		if err != nil {
 			http.Error(w, "Internal Server Error", 500)
 			log.Println(err)
 			return
 		}
+		fmt.Println(req.AuthorImgName)
+
+		fileAuthor, err := os.Create("static/image/" + req.AuthorImgName)
+
+		if err != nil {
+			fmt.Println("Unable to create file:", err)
+			return
+		}
+
+		_, err = fileAuthor.Write(authorImg)
+
+		defer fileAuthor.Close()
+
+		fmt.Println("Done.")
+
+		if err != nil {
+			http.Error(w, "bd", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		image, err := base64.StdEncoding.DecodeString(req.Image)
+		if err != nil {
+			http.Error(w, "img", 500)
+			log.Println(err.Error())
+			return
+		}
+		fileImage, err := os.Create("static/image/" + req.ImageName)
+		if err != nil {
+			fmt.Println("Unable to create file:", err)
+			return
+		}
+
+		defer fileImage.Close()
+		_, err = fileImage.Write(image)
+		if err != nil {
+			http.Error(w, "bd", 500)
+			log.Println(err.Error())
+			return
+		}
+		fmt.Println("Done.")
+		req.PublishDate = formatDate(req.PublishDate)
+
+		err = savePost(db, req)
+		if err != nil {
+			http.Error(w, "bd", 500)
+			log.Println(err.Error())
+			return
+		}
 		log.Println("Request completed successfully")
+
 	}
+}
+
+func savePost(db *sqlx.DB, req createPostRequest) error {
+	const query = `
+		INSERT INTO
+		post
+		(
+			title,       
+			subtitle, 
+			image,  
+			author,      
+			authorImg,  
+			publish_date,
+			content,
+			featured
+		)
+		VALUES
+		(
+			?,
+			?,
+			CONCAT('/static/image/', ?),
+			?,
+			CONCAT('/static/image/', ?),
+			?,
+			?,
+			?
+		)
+		`
+	_, err := db.Exec(query, req.Title, req.Subtitle, req.ImageName, req.Author, req.AuthorImgName, req.PublishDate, req.Content, 0)
+
+	return err
+}
+
+func formatDate(oldDate string) string {
+	dateStr := strings.Split(oldDate, "-")
+	newDateStr := dateStr[2] + "/" + dateStr[1] + "/" + dateStr[0]
+	return newDateStr
 }

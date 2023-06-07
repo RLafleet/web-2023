@@ -56,7 +56,7 @@
     <div class="section__all-posts all-posts">
       {{ range .MostRecent}}
       <div class="all-posts__item">
-        <img src="{{.Image}}">
+        <img class="item__image" src="{{.Image}}">
         <a class="all-posts__title" href="{{ .PostURL }}">{{ .Title }}</a>
         <p class="all-posts__text">{{ .Subtitle }}</p>
           <div class="item__author-block">

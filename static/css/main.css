@@ -224,6 +224,11 @@
     background-color: #ffffff;
 }
 
+.item__image
+{
+    max-height: 150px;
+}
+
 .all-posts__title
 {
     display: block;
