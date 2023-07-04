@@ -52,21 +52,6 @@
       </div>
       {{ end}}  
     </div>
-    <h3 class="section__title-top">Most Recent</h3>
-    <div class="section__all-posts all-posts">
-      {{ range .MostRecent}}
-      <div class="all-posts__item">
-        <img class="item__image" src="{{.Image}}">
-        <a class="all-posts__title" href="{{ .PostURL }}">{{ .Title }}</a>
-        <p class="all-posts__text">{{ .Subtitle }}</p>
-          <div class="item__author-block">
-            <img class="author-block__image" src="{{ .AuthorImg }}" alt= "William">
-            <span class="author-block__image-text">{{ .Author }}</span>
-            <span class="author-block__image-data">{{ .PublishDate }}</span>
-          </div>
-      </div>
-    {{ end}}      
-    </div>    
   </section>   
   <footer class="footer">
     <h2 class="footer__title">Stay in Touch</h2>

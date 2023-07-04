@@ -1,3 +1,5 @@
+CREATE DATABASE BLOG;
+USE BLOG;
 CREATE TABLE post
 (
    `post_id`      INT NOT NULL AUTO_INCREMENT,
@@ -12,4 +14,6 @@ CREATE TABLE post
    PRIMARY KEY (`post_id`)
 ) ENGINE = InnoDB
 CHARACTER SET = utf8mb4
-COLLATE utf8mb4_unicode_ci
+COLLATE utf8mb4_unicode_ci;
+SELECT * FROM post;
+INSERT INTO post (title, subtitle, image, ImgModifier, Author, AuthorImg, publish_date, featured) VALUES ("The Road Ahead", "The road ahead might be paved - it might not be.", "static/image/mat.jpg", "featured-post__background_the-road-ahead", "Mat Vogels","static/image/mat.jpg", '9/25/2015', 1);
