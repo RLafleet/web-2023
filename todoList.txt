@@ -1,0 +1,82 @@
+import {importCss} from '../../../core/css.js'
+import {AddNote} from './AddNote.js'
+
+const styles = importCss('/src/learn/pages/todoList/TodoLists.css')
+
+/**
+ * @param {string} todoValue
+ */
+function AddTask(todoValue) {
+	console.log(`Добавлена новая заметка: "${todoValue}"`);
+}
+
+
+/**
+ * @param {TemplateLiteralFn} html
+ */
+function TodoList(html) {
+	return html`
+    <div class=${styles.container}>
+		${html(AddNote, {
+			placeholder: 'Добавьте новую заметку...',
+			onLead: AddTask,
+		})}
+    </div>
+  `;
+}
+
+export {
+	TodoList,
+};
+
+
+import {importCss} from '../../../core/css.js'
+import {useEventHandler} from '../../../core/hooks/events/useEventHandler.js'
+import {useInputElementRef} from '../../../core/hooks/useElementRef.js'
+
+const styles = importCss('/src/learn/pages/TodoList/view/AddNote.css')
+
+/**
+ * @param {TemplateLiteralFn} html
+ * @param {{
+ *  placeholder: string,
+ *  onLead: (value: string) => void
+ * }} props
+ */
+
+function AddNote(html, props){
+	const {
+		placeholder,
+		onLead,
+	} = props
+	const inputRef = useInputElementRef()
+
+	/**
+	 * @param {KeyboardEvent} event
+	 */
+	function keyPressHandler(event) {
+		const input = inputRef.current
+		const value = input.value
+		if (event.key === 'Enter' && value.length > 0 && value.trim()) {
+			onLead(value)
+			console.log(value, "\n")
+			input.value = ''
+		}
+	}
+
+	useEventHandler(inputRef, 'keypress', keyPressHandler)
+
+	return html`
+<input
+	save-ref=${inputRef}
+	class=${styles.input}
+	type="text"
+	placeholder=${placeholder}
+	maxlength="255"
+/>
+`
+}
+
+export {
+	AddNote,
+}
